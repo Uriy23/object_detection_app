@@ -1,0 +1,22 @@
+{% load static %}
+
+
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'image_object_detector/index.css' %}">
+    <title>Hello World Django App with object detection</title>
+  </head>
+  <div class="wrapper">
+    <div class="content">
+      <h1>Hello, I'm Image object detector</h1>
+      <form method="post" action="show/">
+        {% csrf_token %}
+        <p>
+          <label for="image_url">Введите url изображения</label>
+          <input type="text" name="image_url" value="https://funart.pro/uploads/posts/2021-07/1627407936_29-funart-pro-p-obichnie-kotyata-zhivotnie-krasivo-foto-30.jpg" />
+        </p>
+        <input type="submit" value = "submit" />
+      </form>
+    </div>
+  </div>
+</html>
