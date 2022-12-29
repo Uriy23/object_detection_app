@@ -13,7 +13,7 @@
         {% csrf_token %}
         <p>
           <label for="image_url">Введите url изображения</label>
-          <input type="text" name="image_url" value="https://funart.pro/uploads/posts/2021-07/1627407936_29-funart-pro-p-obichnie-kotyata-zhivotnie-krasivo-foto-30.jpg" />
+          <input type="text" name="image_url" value="{{ image_url }}" />
         </p>
         <input type="submit" value = "submit" />
       </form>
