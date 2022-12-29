@@ -1,0 +1,27 @@
+.outside-wrapper {
+  border: 1px solid lightgray;
+}
+
+.inside-wrapper {
+  width: 984px;
+  position: relative;
+}
+
+.covered-image {
+  width: 984px;
+}
+
+.covering-canvas {
+  width: 984px;
+  height: 1000px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.image-box--label {
+  position: absolute;
+  background-color: red;
+  color: white;
+  padding: 3px 7px;
+}
