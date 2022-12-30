@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render, redirect
 from django.views import generic
-from .image_object_detector_model import ImageObjectDetectorModel
+from .models.image_object_detector_model import ImageObjectDetectorModel
 
 class IndexView(generic.View):
   def get(self, request):
@@ -12,11 +12,14 @@ class IndexView(generic.View):
     return render(request, template_name, locals)
 
 class ShowView(generic.View):
+  def __init__(self):
+    super().__init__()
+    self.detector = ImageObjectDetectorModel()
+
   def post(self, request, *args, **kwargs):
     template_name = 'image_object_detector/show.html'
     image_url = request.POST["image_url"]
-    detector = ImageObjectDetectorModel()
-    list_box, list_name = detector.detection_image(image_url)
+    list_box, list_name = self.detector.detect_image(image_url)
     locals = {
       'image_url': image_url,
       'list_box': json.dumps(list_box),
