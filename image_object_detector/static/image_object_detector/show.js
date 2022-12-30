@@ -1,6 +1,8 @@
 class ShowForm {
   constructor() {
     this.ctx = this.canvasCtx
+    console.log('this.image.offsetWidth', this.image.offsetWidth)
+    console.log('this.image.naturalWidth', this.image.naturalWidth)
     this.imageScale = this.image.offsetWidth / this.image.naturalWidth
     this.showBoxes()
   }
@@ -75,8 +77,9 @@ class ShowForm {
   }
 }
 
-init = () => {
+initForm = () => {
+  console.log('initForm#81')
   showForm = new ShowForm()
 }
 
-document.addEventListener('DOMContentLoaded', init)
+window.addEventListener('load', initForm)
