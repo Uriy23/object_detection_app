@@ -1,5 +1,5 @@
 from django.db import models
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from transformers import DetrFeatureExtractor, DetrForObjectDetection
 import requests
 import torch
@@ -15,7 +15,10 @@ class ImageObjectDetectorModel(metaclass = Singleton):
     if (url is None or url == '') and (path is None or path == ''):
       return [], []
 
-    image = self.__open_image(url, path)
+    try:
+      image = self.__open_image(url, path)
+    except UnidentifiedImageError:
+      return [], []
 
     inputs = self.feature_extractor(images=image, return_tensors="pt")
     outputs = self.model(**inputs)
