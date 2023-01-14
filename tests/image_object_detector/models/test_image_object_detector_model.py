@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.test import TestCase
-from image_object_detector.models.image_object_detector_model import ImageObjectDetectorModel
 from PIL import Image
-
+from image_object_detector.models.image_object_detector_model import ImageObjectDetectorModel
 
 class ImageObjectDetectorModelTest(TestCase):
   def setUp(self):
