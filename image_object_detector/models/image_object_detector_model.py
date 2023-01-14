@@ -3,14 +3,7 @@ from PIL import Image
 from transformers import DetrFeatureExtractor, DetrForObjectDetection
 import requests
 import torch
-
-class Singleton(type):
-  instance = None
-
-  def __call__(cls, *args, **kwargs):
-    if cls.instance is None:
-      cls.instance = super(Singleton, cls).__call__(*args, **kwargs)
-    return cls.instance
+from image_object_detector.lib.singleton import Singleton
 
 class ImageObjectDetectorModel(metaclass = Singleton):
   def __init__(self):
@@ -19,6 +12,9 @@ class ImageObjectDetectorModel(metaclass = Singleton):
     self.model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50")
 
   def detect_image(self, url = None, path = None):
+    if (url is None or url == '') and (path is None or path == ''):
+      return [], []
+
     image = self.__open_image(url, path)
 
     inputs = self.feature_extractor(images=image, return_tensors="pt")
