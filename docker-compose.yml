@@ -1,0 +1,10 @@
+version: '3.10'
+
+services:
+  app:
+    build: .
+    restart: always
+    depends_on:
+      - sqlite
+    ports:
+      - "5005:5005"
