@@ -2,13 +2,15 @@
 
 Веб-сервис, определяющий природу объекта и его положение по изображению из пользовательского URL.
 
+Пример работы:
+![img.png](img.png)
+
 [Ссылка на работающий проект](http://51.250.81.158/image_object_detector).
 
 ## Для создания использованы:
 
 1. Фреймворк Django;
-2. ML-модель facebook/detr-resnet-50 с HuggingFace:
-   https://huggingface.co/facebook/detr-resnet-50;
+2. ML-модель [facebook/detr-resnet-50](https://huggingface.co/facebook/detr-resnet-50) с HuggingFace;
 3. Yandex.Cloud - для развертывания.
 
 ## Состав команды:
