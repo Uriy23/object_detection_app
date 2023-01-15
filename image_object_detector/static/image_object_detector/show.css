@@ -25,3 +25,20 @@
   color: white;
   padding: 3px 7px;
 }
+
+.link-to-root {
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: navy;
+}
+
+.link-to-root:hover {
+  cursor: pointer;
+  color: crimson;
+}
+
+.warning-message {
+  display: block;
+  padding: 20px;
+  color: crimson;
+}

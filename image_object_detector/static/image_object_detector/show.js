@@ -1,8 +1,7 @@
 class ShowForm {
   constructor() {
     this.ctx = this.canvasCtx
-    this.imageScale = this.image.offsetWidth / this.image.naturalWidth
-    this.showBoxes()
+    this.waitForImageLoad()
   }
 
   showBoxes() {
@@ -11,11 +10,10 @@ class ShowForm {
       this.renderBox(box)
       this.renderLabel(box, boxLabel)
     })
-    console.log('scale', this.imageScale)
   }
 
   renderLabel(pythonBox, labelText) {
-    const [boxLeft, boxTop, boxWidth, boxHeight] = this.pythonBoxCoordsToCanvas(pythonBox)
+    const [boxLeft, boxTop, _boxWidth, _boxHeight] = this.pythonBoxCoordsToCanvas(pythonBox)
     const labelBox = document.createElement('div')
     labelBox.classList.add('image-box--label')
     labelBox.innerText = labelText
@@ -26,7 +24,6 @@ class ShowForm {
 
   renderBox(pythonBox) {
     const [boxLeft, boxTop, boxWidth, boxHeight] = this.pythonBoxCoordsToCanvas(pythonBox)
-    console.log({ boxLeft, boxTop, boxWidth, boxHeight })
     this.ctx.strokeRect(boxLeft, boxTop, boxWidth, boxHeight)
   }
 
@@ -39,8 +36,13 @@ class ShowForm {
     return [boxLeft, boxTop, boxWidth, boxHeight]
   }
 
-  get image() {
-    return document.querySelector('#target-image')
+  waitForImageLoad() {
+    let img = document.querySelector('#target-image')
+    img.onload = () => {
+      this.imageRecognized = img
+      this.imageScale = this.imageRecognized.offsetWidth / this.imageRecognized.naturalWidth
+      this.showBoxes()
+    }
   }
 
   get canvasCtx() {
@@ -52,13 +54,12 @@ class ShowForm {
   }
 
   get imageBoxes() {
-    const image = this.image
-    console.log(image)
+    const image = this.imageRecognized
     return this.readDataAttribute(image, 'data-list-box')
   }
 
   get imageBoxLabels() {
-    const image = this.image
+    const image = this.imageRecognized
     return this.readDataAttribute(image, 'data-list-name')
   }
 

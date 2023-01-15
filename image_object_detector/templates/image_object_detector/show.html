@@ -10,10 +10,15 @@
   <div class="wrapper">
     <div class="content">
       <h1>Hello, I'm Image object detector</h1>
+      <a class="btn link-to-root" href="/image_object_detector">Вернуться на главную страницу</a>
       <div class="outside-wrapper">
         <div class="inside-wrapper">
-          <img class="covered-image" id="target-image" src="{{ image_url }}" data-list-box="{{ list_box }}" data-list-name="{{ list_name }}" />
-          <canvas class="covering-canvas" width="984px" height="1000px"></canvas>
+          {% if image_url is not None and image_url != '' %}
+            <img class="covered-image" id="target-image" src="{{ image_url }}" data-list-box="{{ list_box }}" data-list-name="{{ list_name }}" />
+            <canvas class="covering-canvas" width="984px" height="1000px"></canvas>
+          {% else %}
+            <div class="warning-message">Нечего распознавать <a href="/image_object_detector">Вернуться к вводу ссылки</a></div>
+          {% endif %}
         </div>
       </div>
     </div>

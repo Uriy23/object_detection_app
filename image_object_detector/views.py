@@ -19,9 +19,9 @@ class ShowView(generic.View):
   def post(self, request, *args, **kwargs):
     template_name = 'image_object_detector/show.html'
     image_url = request.POST["image_url"]
-    list_box, list_name = self.detector.detect_image(image_url)
+    url, list_box, list_name = self.detector.detect_image(image_url)
     locals = {
-      'image_url': image_url,
+      'image_url': url,
       'list_box': json.dumps(list_box),
       'list_name': json.dumps(list_name)
     }

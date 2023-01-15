@@ -3,6 +3,7 @@
 
 <html>
   <head>
+    <link rel="shortcut icon" type="image/ico" href="{% static 'image_object_detector/images/favicon.ico' %}"/>
     <link rel="stylesheet" href="{% static 'image_object_detector/index.css' %}">
     <title>Hello World Django App with object detection</title>
   </head>
@@ -13,9 +14,9 @@
         {% csrf_token %}
         <p>
           <label for="image_url">Введите url изображения</label>
-          <input type="text" name="image_url" value="{{ image_url }}" />
+          <input class="url-input" type="text" name="image_url" value="{{ image_url }}" />
         </p>
-        <input type="submit" value = "submit" />
+        <input class="submit-button" type="submit" value = "submit" />
       </form>
     </div>
   </div>
