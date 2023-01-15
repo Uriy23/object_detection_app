@@ -116,11 +116,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-# print(f'{BASE_DIR=}')
-STATIC_ROOT = BASE_DIR / '/app/static'
-# print(f'{STATIC_ROOT=}')
+if os.getenv('DJANGO_ENV') == 'development':
+  STATIC_ROOT = ''
+else:
+  STATIC_ROOT = BASE_DIR / '/app/static'
+
 STATIC_URL = "static/"
-# a = 1 / 0
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -13,12 +13,14 @@ class ImageObjectDetectorModel(metaclass = Singleton):
 
   def detect_image(self, url = None, path = None):
     if (url is None or url == '') and (path is None or path == ''):
-      return [], []
+      return None, [], []
 
     try:
       image = self.__open_image(url, path)
     except UnidentifiedImageError:
-      return [], []
+      return None, [], []
+    except requests.exceptions.MissingSchema:
+      return None, [], []
 
     inputs = self.feature_extractor(images=image, return_tensors="pt")
     outputs = self.model(**inputs)
@@ -27,7 +29,7 @@ class ImageObjectDetectorModel(metaclass = Singleton):
     results = self.feature_extractor.post_process(outputs, target_sizes=target_sizes)[0]
 
     list_box, list_name = self.__filter_predictions(results, minimum_score = 0.8)
-    return list_box, list_name
+    return url or path, list_box, list_name
 
   # private methods
 
