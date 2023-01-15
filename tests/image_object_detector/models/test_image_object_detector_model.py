@@ -29,6 +29,6 @@ class ImageObjectDetectorModelTest(TestCase):
         '''
         Проверяет, что если модель получает score < 0,9, то пользователю не возвращается результата распознавания.
         '''
-        boxes, labels = self.detector.detect_image(path=f'{settings.BASE_DIR}/tests/image_object_detector'
-                                                        f'/test_uncertain_image.png)')
+        image_path = f'{settings.BASE_DIR}/tests/image_object_detector/test_uncertain_image.png'
+        boxes, labels = self.detector.detect_image(path=image_path)
         self.assertEqual(labels, [])
